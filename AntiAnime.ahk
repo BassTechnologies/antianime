@@ -35,33 +35,33 @@ LastWindow := ActiveWindow
 return
 
 recheck:
-if ActiveWindow contains anime,аниме,hentai, хентай
+if ActiveWindow contains anime,Г Г­ГЁГ¬ГҐ,hentai, ГµГҐГ­ГІГ Г©
 {
-	Run, FBI.mp4, , Max UseErrorLevel
+	Run, %A_Temp%\FBI.mp4, , Max UseErrorLevel
 	if ErrorLevel = ERROR
 		MsgBox Error, Open FBI.mp4
 	PID := DllCall("GetCurrentProcessId")
-	WinSet, disable,, %ActiveWindow% ;Делаем окно, в котором было найдено одно из слов contains - деактивированным.
-	WinSet, AlwaysOnTop, on, ahk_pid %PID% ; .mp4 файл по верх всех окон.
+	WinSet, disable,, %ActiveWindow% ;Г„ГҐГ«Г ГҐГ¬ Г®ГЄГ­Г®, Гў ГЄГ®ГІГ®Г°Г®Г¬ ГЎГ»Г«Г® Г­Г Г©Г¤ГҐГ­Г® Г®Г¤Г­Г® ГЁГ§ Г±Г«Г®Гў contains - Г¤ГҐГ ГЄГІГЁГўГЁГ°Г®ГўГ Г­Г­Г»Г¬.
+	WinSet, AlwaysOnTop, on, ahk_pid %PID% ; .mp4 ГґГ Г©Г« ГЇГ® ГўГҐГ°Гµ ГўГ±ГҐГµ Г®ГЄГ®Г­.
 	sleep 500
-	WinGet, OutputVar, Pid, %ActiveWindow% ; Получаем PID окна со словом
-	Process, close, %OutputVar% ;Закрываем его
+	WinGet, OutputVar, Pid, %ActiveWindow% ; ГЏГ®Г«ГіГ·Г ГҐГ¬ PID Г®ГЄГ­Г  Г±Г® Г±Г«Г®ГўГ®Г¬
+	Process, close, %OutputVar% ;Г‡Г ГЄГ°Г»ГўГ ГҐГ¬ ГҐГЈГ®
 	if timeout != 0
 		settimer, repeat, %timeout%
 	else
 		goto repeat
-	timeout := timeout * 100 ;Решил не делать дополнительно Edit для промежутка, который остановит таймер REPEAT. Просто берём число из timeout и * на 100.
-	if timeout != 0					;Если промежуток таймера REPEAT 100мс - через 10000мс таймер REPEAT будет остановлен благодаря таймеру STOP
+	timeout := timeout * 100 ;ГђГҐГёГЁГ« Г­ГҐ Г¤ГҐГ«Г ГІГј Г¤Г®ГЇГ®Г«Г­ГЁГІГҐГ«ГјГ­Г® Edit Г¤Г«Гї ГЇГ°Г®Г¬ГҐГ¦ГіГІГЄГ , ГЄГ®ГІГ®Г°Г»Г© Г®Г±ГІГ Г­Г®ГўГЁГІ ГІГ Г©Г¬ГҐГ° REPEAT. ГЏГ°Г®Г±ГІГ® ГЎГҐГ°ВёГ¬ Г·ГЁГ±Г«Г® ГЁГ§ timeout ГЁ * Г­Г  100.
+	if timeout != 0					;Г…Г±Г«ГЁ ГЇГ°Г®Г¬ГҐГ¦ГіГІГ®ГЄ ГІГ Г©Г¬ГҐГ°Г  REPEAT 100Г¬Г± - Г·ГҐГ°ГҐГ§ 10000Г¬Г± ГІГ Г©Г¬ГҐГ° REPEAT ГЎГіГ¤ГҐГІ Г®Г±ГІГ Г­Г®ГўГ«ГҐГ­ ГЎГ«Г ГЈГ®Г¤Г Г°Гї ГІГ Г©Г¬ГҐГ°Гі STOP
 		settimer, stop, %timeout%
 }
 return
 
 repeat:
-Process, close, %OutputVar% ;Не даём заново открыть файл со словом.
+Process, close, %OutputVar% ;ГЌГҐ Г¤Г ВёГ¬ Г§Г Г­Г®ГўГ® Г®ГІГЄГ°Г»ГІГј ГґГ Г©Г« Г±Г® Г±Г«Г®ГўГ®Г¬.
 if offscreen = 1
-	SendMessage, 0x112, 0xF170, 2,, Program Manager ;Если "OffScreen = 1" - выключаем монитор
+	SendMessage, 0x112, 0xF170, 2,, Program Manager ;Г…Г±Г«ГЁ "OffScreen = 1" - ГўГ»ГЄГ«ГѕГ·Г ГҐГ¬ Г¬Г®Г­ГЁГІГ®Г°
 if offsystem = 1
-	Shutdown, 13 ; Если "OffSystem = 1" - выключаем ПК
+	Shutdown, 13 ; Г…Г±Г«ГЁ "OffSystem = 1" - ГўГ»ГЄГ«ГѕГ·Г ГҐГ¬ ГЏГЉ
 return
 
 stop:
