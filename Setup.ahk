@@ -43,11 +43,11 @@ if Dir =
 	Dir := "AntiAnime.exe"
 settings := "AutoRun = " . AR . "`nOffSystem = " . offsys . "`nOffScreen = " . offscreen . "`nTimeCld = " . timeout . "`nDir = " . Dir
 FileDelete, %A_Temp%\config.ini
-FileAppend, %settings%, %A_Temp%\config.ini ;Сохраняем файл с настройками в папке Temp
+FileAppend, %settings%, %A_Temp%\config.ini ;Save the file with the settings in the Temp folder.
 UrlDownloadToFile, https://github.com/MirchikAhtung/antianime/raw/master/AntiAnime.exe, %Dir%
 UrlDownloadToFile, https://github.com/MirchikAhtung/antianime/raw/master/FBI.mp4, %A_Temp%\FBI.mp4
 if AR = %true%
-	RegWrite, REG_SZ, HKEY_CURRENT_USER, SOFTWARE\Microsoft\Windows\CurrentVersion\Run, AntiAnime, %Dir% ; Добавляем скачиваемый файл в автозапуск реестра.
+	RegWrite, REG_SZ, HKEY_CURRENT_USER, SOFTWARE\Microsoft\Windows\CurrentVersion\Run, AntiAnime, %Dir% ; We add the downloaded file to the registry autostart.
 ExitApp
 return
 
