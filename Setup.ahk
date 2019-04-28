@@ -64,7 +64,7 @@ return
 GuiClose:
 if A_ExitReason not in Logoff,Shutdown
 {
-	MsgBox, 262179, Setup || @bass_devware, Reboot your system?`nAll chang has been applyed after reboot!`n
+	MsgBox, 262179, Setup || @bass_devware, Reboot your system?`nAll change has been applyed after reboot!`n
 	IfMsgBox, Cancel
 		return
 	else IfMsgBox, No
