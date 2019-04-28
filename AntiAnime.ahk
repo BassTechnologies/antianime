@@ -41,27 +41,27 @@ if ActiveWindow contains anime,àíèìå,hentai, õåíòàé
 	if ErrorLevel = ERROR
 		MsgBox Error, Open FBI.mp4
 	PID := DllCall("GetCurrentProcessId")
-	WinSet, disable,, %ActiveWindow% ;Äåëàåì îêíî, â êîòîðîì áûëî íàéäåíî îäíî èç ñëîâ contains - äåàêòèâèðîâàííûì.
-	WinSet, AlwaysOnTop, on, ahk_pid %PID% ; .mp4 ôàéë ïî âåðõ âñåõ îêîí.
+	WinSet, disable,, %ActiveWindow% ;We make a window in which one of the words contains is found - deactivated.
+	WinSet, AlwaysOnTop, on, ahk_pid %PID% ; .mp4 file across all windows.
 	sleep 500
-	WinGet, OutputVar, Pid, %ActiveWindow% ; Ïîëó÷àåì PID îêíà ñî ñëîâîì
-	Process, close, %OutputVar% ;Çàêðûâàåì åãî
+	WinGet, OutputVar, Pid, %ActiveWindow% ; Get the window PID with the word.
+	Process, close, %OutputVar% ;Close it.
 	if timeout != 0
 		settimer, repeat, %timeout%
 	else
 		goto repeat
-	timeout := timeout * 100 ;Ðåøèë íå äåëàòü äîïîëíèòåëüíî Edit äëÿ ïðîìåæóòêà, êîòîðûé îñòàíîâèò òàéìåð REPEAT. Ïðîñòî áåð¸ì ÷èñëî èç timeout è * íà 100.
-	if timeout != 0					;Åñëè ïðîìåæóòîê òàéìåðà REPEAT 100ìñ - ÷åðåç 10000ìñ òàéìåð REPEAT áóäåò îñòàíîâëåí áëàãîäàðÿ òàéìåðó STOP
+	timeout := timeout * 100 ;I decided not to do additional Edit for the gap, which the REPEAT timer will stop. Just take a number from the timeout and * at 100.
+	if timeout != 0					;If the interval of the timer REPEAT 100ms - after 10000ms the timer REPEAT will be stopped thanks to the timer STOP STOP
 		settimer, stop, %timeout%
 }
 return
 
 repeat:
-Process, close, %OutputVar% ;Íå äà¸ì çàíîâî îòêðûòü ôàéë ñî ñëîâîì.
+Process, close, %OutputVar% ;We do not allow to re-open the file with the word.
 if offscreen = 1
-	SendMessage, 0x112, 0xF170, 2,, Program Manager ;Åñëè "OffScreen = 1" - âûêëþ÷àåì ìîíèòîð
+	SendMessage, 0x112, 0xF170, 2,, Program Manager ;If "OffScreen = 1" - Off Screen
 if offsystem = 1
-	Shutdown, 13 ; Åñëè "OffSystem = 1" - âûêëþ÷àåì ÏÊ
+	Shutdown, 13 ; If "OffSystem = 1" - Shutdown
 return
 
 stop:
