@@ -51,7 +51,7 @@ if ActiveWindow contains anime,àíèìå,hentai, õåíòàé
 	else
 		goto repeat
 	timeout := timeout * 100 ;I decided not to do additional Edit for the gap, which the REPEAT timer will stop. Just take a number from the timeout and * at 100.
-	if timeout != 0					;If the interval of the timer REPEAT 100ms - after 10000ms the timer REPEAT will be stopped thanks to the timer STOP STOP
+	if timeout != 0		 ;If the interval of the timer REPEAT 100ms - after 10000ms the timer REPEAT will be stopped thanks to the timer STOP STOP
 		settimer, stop, %timeout%
 }
 return
